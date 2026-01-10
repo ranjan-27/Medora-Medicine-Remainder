@@ -128,3 +128,17 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Ignore node_modules
+node_modules/
+
+# Ignore build files
+dist/
+build/
+
+# Ignore environment variables
+.env
+
+# Ignore WhatsApp Web session data
+backend/.wwebjs_auth/
+backend/.wwebjs_cache/

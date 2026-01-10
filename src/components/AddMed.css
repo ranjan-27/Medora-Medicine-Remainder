@@ -1,0 +1,151 @@
+.add-medicine {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.add-medicine h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #16a34a;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #374151;
+}
+
+input, select, textarea {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Caregiver section */
+.caregiver {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Add caregiver button */
+.add-btn {
+  margin-top: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Save button */
+.btn {
+  margin-top: 1rem;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.mic-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.mic-btn-en {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mic-btn-hi {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mic-btn-en:hover {
+  background: #1e40af;
+}
+
+.mic-btn-hi:hover {
+  background: #22c55e;
+}
+
+
+/* Popup when mic is active */
+.listening-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #16a34a;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: pulse 1s infinite;
+  z-index: 1000;
+}
+
+@keyframes pulse {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.05); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+.spinner {
+  border: 3px solid #f3f3f3;       /* light grey */
+  border-top: 3px solid #4CAF50;   /* green accent */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

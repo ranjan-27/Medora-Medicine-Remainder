@@ -1,0 +1,116 @@
+/* frontend/src/styles/Notification.css */
+
+.notifications {
+  max-width: 640px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.notifications h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1e3a8a; /* deep blue */
+}
+
+.notes {
+  display: grid;
+  gap: 12px;
+}
+
+.note {
+  background: #ffffff;
+  border: 1px solid #e5e7eb; /* light gray border */
+  border-radius: 10px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.note:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.note p {
+  margin: 0 0 6px;
+  font-weight: 500;
+  color: #111827; /* dark text */
+}
+
+.note small {
+  color: #6b7280; /* muted gray */
+  font-size: 0.85rem;
+}
+
+/* Default button style */
+.note button {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb; /* blue button */
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.note button:hover {
+  background: #1e40af; /* darker blue */
+}
+
+/* ✅ Color-coded action buttons */
+.note button.taken {
+  background: #22c55e; /* green */
+}
+.note button.taken:hover {
+  background: #15803d; /* darker green */
+}
+
+.note button.missed {
+  background: #ef4444; /* red */
+}
+.note button.missed:hover {
+  background: #b91c1c; /* darker red */
+}
+
+/* Status badges */
+.status {
+  margin-left: 8px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.status.upcoming {
+  color: #2563eb;
+  background: #eff6ff; /* light blue background */
+}
+.status.taken {
+  color: #22c55e;
+  background: #ecfdf5; /* light green background */
+}
+.status.missed {
+  color: #ef4444;
+  background: #fef2f2; /* light red background */
+}
+
+/* Action buttons container */
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .note {
+    padding: 10px;
+  }
+  .note button {
+    width: 100%;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}

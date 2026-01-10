@@ -1,0 +1,105 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 3rem 4rem;
+  background: linear-gradient(120deg, #365e44, #215030, #075424); /* green gradient */
+  color: #f9fafb; /* light text */
+  flex-wrap: wrap; /* responsive */
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+/* Contact Form Section */
+.fill {
+  flex: 1;
+  max-width: 500px;
+}
+
+.fill h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #fff; /* white heading for contrast */
+}
+
+.f1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.f1 input,
+.f1 textarea {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.f1 input::placeholder,
+.f1 textarea::placeholder {
+  color: #d1fae5; /* light green placeholder */
+}
+
+.f1 input:focus,
+.f1 textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
+}
+
+.f1 button {
+  padding: 0.9rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #065f46; /* dark green button */
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.f1 button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Static Info Section */
+.contact {
+  flex: 1;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.contact h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.contact p {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e5e7eb; /* light gray text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .fill, .contact {
+    max-width: 100%;
+  }
+}

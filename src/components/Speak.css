@@ -1,0 +1,75 @@
+.speak {
+  max-width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 0 1rem; /* add padding so content doesn't touch edges */
+}
+
+.speak .mic-btn {
+  margin-left: 0;            /* remove fixed margin */
+  display: inline-block;     /* keep button inline */
+}
+
+/* Mic button styling */
+.mic-btn {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #16a34a;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.mic-btn:hover {
+  background: #22c55e;
+}
+
+/* Listening popup */
+.listening-popup {
+  margin-top: 1rem;
+  background: #2563eb;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  animation: pulse 1s infinite;
+  text-align: center;
+}
+
+/* Confirmation box */
+.confirmation {
+  margin-top: 1rem;
+  background: #f3f4f6;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #111827;
+  text-align: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .speak {
+    max-width: 100%;       /* full width on small screens */
+    margin: 1rem auto;
+  }
+
+  .mic-btn {
+    width: 100%;           /* button stretches full width */
+    margin-top: 0.5rem;
+  }
+
+  .listening-popup,
+  .confirmation {
+    font-size: 0.9rem;     /* slightly smaller text */
+    padding: 0.6rem 1rem;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

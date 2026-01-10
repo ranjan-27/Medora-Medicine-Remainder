@@ -1,0 +1,712 @@
+/* MyMed.css - Modern Interactive Design */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+:root {
+  --primary-green: #10b981;
+  --secondary-green: #34d399;
+  --accent-teal: #14b8a6;
+  --light-mint: #f0fdf4;
+  --dark-green: #065f46;
+  --white: #ffffff;
+  --gray-light: #f8fafc;
+  --gray-medium: #94a3b8;
+  --shadow-sm: 0 4px 12px rgba(16, 185, 129, 0.1);
+  --shadow-md: 0 10px 30px rgba(16, 185, 129, 0.15);
+  --shadow-lg: 0 20px 50px rgba(16, 185, 129, 0.2);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Main Container */
+.my-med {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fff9 0%, var(--light-mint) 100%);
+  padding: 3rem 2rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+.bg-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-pill {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.1;
+  animation: floatPill 15s infinite linear;
+}
+
+@keyframes floatPill {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  90% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Header */
+.my-med h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+  animation: titleReveal 0.8s ease-out;
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.my-med h2::before {
+  content: '💊';
+  margin-right: 15px;
+  animation: pillBounce 3s infinite;
+}
+
+@keyframes pillBounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+.my-med h2::after {
+  content: ' / मेरी दवाइयाँ';
+  color: var(--accent-teal);
+  font-size: 2rem;
+  font-weight: 600;
+  animation: fadeIn 1s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Empty State */
+.empty-state {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 4rem;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(16, 185, 129, 0.1);
+  position: relative;
+  z-index: 1;
+  animation: cardPopIn 0.6s ease-out;
+  transform-style: preserve-3d;
+}
+
+@keyframes cardPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.empty-state::before {
+  content: '💊';
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  opacity: 0.2;
+  animation: emptyPulse 3s infinite;
+}
+
+@keyframes emptyPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.empty-state p {
+  font-size: 1.3rem;
+  color: var(--dark-green);
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+}
+
+/* Add Medicine Button */
+.add-btn {
+  padding: 1.2rem 3rem;
+  background: linear-gradient(135deg, var(--primary-green), var(--accent-teal));
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.add-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent);
+  transition: left 0.6s ease;
+}
+
+.add-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--shadow-lg);
+  letter-spacing: 1px;
+}
+
+.add-btn:hover::before {
+  left: 100%;
+}
+
+.add-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Medicine List Grid */
+.med-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Medicine Card */
+.med-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 2.3rem;
+  box-shadow: var(--shadow-md);
+  border: 2px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: cardSlideIn 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  cursor: pointer;
+}
+
+@keyframes cardSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered card animations */
+.med-card:nth-child(1) { animation-delay: 0.2s; }
+.med-card:nth-child(2) { animation-delay: 0.3s; }
+.med-card:nth-child(3) { animation-delay: 0.4s; }
+.med-card:nth-child(4) { animation-delay: 0.5s; }
+.med-card:nth-child(5) { animation-delay: 0.6s; }
+
+.med-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-green);
+}
+
+.med-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-green), var(--accent-teal));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.med-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Card Content */
+.med-card h3 {
+  font-size: 1.8rem;
+  color: var(--dark-green);
+  margin-bottom: 1rem;
+  font-weight: 800;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.med-card h3::before {
+  content: '💊';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  animation: pillShake 2s infinite;
+}
+
+@keyframes pillShake {
+  0%, 100% {
+    transform: translateY(-50%) rotate(0);
+  }
+  25% {
+    transform: translateY(-50%) rotate(-10deg);
+  }
+  75% {
+    transform: translateY(-50%) rotate(10deg);
+  }
+}
+
+.med-card p {
+  color: var(--dark-green);
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  padding-left: 2.5rem;
+  position: relative;
+}
+
+.med-card p::before {
+  content: '•';
+  position: absolute;
+  left: 1rem;
+  color: var(--accent-teal);
+  font-weight: bold;
+}
+
+.med-card p:nth-child(2) {
+  color: var(--primary-green);
+  font-weight: 600;
+}
+
+.med-card p:nth-child(3) {
+  color: var(--accent-teal);
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  background: var(--light-mint);
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 1rem;
+  animation: timePulse 2s infinite;
+}
+
+@keyframes timePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  }
+}
+
+/* Action Buttons */
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--light-mint);
+}
+
+.actions button {
+  flex: 1;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Edit Button */
+.actions button:nth-child(1) {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--primary-green);
+  border: 2px solid rgba(16, 185, 129, 0.2);
+}
+
+.actions button:nth-child(1):hover {
+  background: var(--primary-green);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Delete Button */
+.actions button:nth-child(2) {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 2px solid rgba(239, 68, 68, 0.2);
+}
+
+.actions button:nth-child(2):hover {
+  background: #ef4444;
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* Notify Button */
+.actions button:nth-child(3) {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 2px solid rgba(245, 158, 11, 0.2);
+}
+
+.actions button:nth-child(3):hover {
+  background: #f59e0b;
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+}
+
+.actions button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.actions button:hover::after {
+  width: 150px;
+  height: 150px;
+}
+
+/* Empty List Animation */
+.med-list:empty ~ .empty-state {
+  animation: emptyStateBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes emptyStateBounce {
+  0% {
+    transform: scale(0.8) translateY(50px);
+  }
+  60% {
+    transform: scale(1.05) translateY(-20px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Medicine Count Badge */
+.med-count {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: var(--primary-green);
+  color: var(--white);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+  animation: countBounce 0.6s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@keyframes countBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Loading Animation */
+.loading {
+  text-align: center;
+  padding: 4rem;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--light-mint);
+  border-top-color: var(--primary-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .med-list {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .my-med {
+    padding: 2rem 1rem;
+  }
+
+  .my-med h2 {
+    font-size: 2.2rem;
+  }
+
+  .my-med h2::after {
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .med-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .med-card {
+    padding: 2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  .empty-state {
+    padding: 3rem 2rem;
+  }
+
+  .med-count {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-med h2 {
+    font-size: 1.8rem;
+  }
+
+  .med-card {
+    padding: 1.5rem;
+  }
+
+  .med-card h3 {
+    font-size: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .med-card p {
+    padding-left: 2rem;
+  }
+
+  .add-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .empty-state {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.react-confirm-alert-overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+.react-confirm-alert-body {
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.med-card {
+  border-radius: 9px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-left: 4px solid #ccc;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.med-card.overdue {
+  border-left-color: #ff4444;
+  background-color: #ffe6e6;
+}
+
+.med-card.due-soon {
+  border-left-color: #ffaa00;
+  background-color: #fff3e0;
+}
+
+.med-card.upcoming {
+  border-left-color: #4CAF50;
+  background-color: #e8f5e9;
+}
+
+.med-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.med-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.med-card p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.overdue {
+  background-color: #ff4444;
+  color: white;
+}
+
+.status-badge.due-soon {
+  background-color: #ffaa00;
+  color: white;
+}
+
+.status-badge.upcoming {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* .actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  min-width: 70px;
+} */
+
+.btn-mark-done {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-mark-done:hover {
+  background-color: #45a049;
+}
+
+
+/* Add Background Pills Dynamically */
+/* Add this to your component:
+useEffect(() => {
+  const bgContainer = document.querySelector('.bg-animation');
+  const pillCount = 15;
+
+  for (let i = 0; i < pillCount; i++) {
+    const pill = document.createElement('div');
+    pill.className = 'bg-pill';
+    pill.textContent = '💊';
+    pill.style.left = `${Math.random() * 100}%`;
+    pill.style.animationDelay = `${Math.random() * 15}s`;
+    pill.style.animationDuration = `${10 + Math.random() * 10}s`;
+    bgContainer.appendChild(pill);
+  }
+}, []);
+*/
