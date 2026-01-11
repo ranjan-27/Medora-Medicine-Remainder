@@ -5,12 +5,18 @@ const path = require("path");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 
-// Prefer installed Chrome if available (more stable on Windows)
-const chromePaths = [
-  "C:/Program Files/Google/Chrome/Application/chrome.exe",
-  "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
-];
-const chromeExec = chromePaths.find((p) => fs.existsSync(p)) || puppeteer.executablePath();
+// Prefer installed Chrome if available (Windows local dev), otherwise Puppeteer's bundled Chromium
+let chromeExec;
+if (process.platform === "win32") {
+  const chromePaths = [
+    "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+  ];
+  chromeExec = chromePaths.find((p) => fs.existsSync(p)) || puppeteer.executablePath();
+} else {
+  // On Render/Linux, always use Puppeteer's Chromium
+  chromeExec = puppeteer.executablePath();
+}
 
 const client = new Client({
   authStrategy: new LocalAuth(),
@@ -33,17 +39,17 @@ client.on("qr", async (qr) => {
   console.log(" Generating WhatsApp QR Code...");
   console.log("   1. Open WhatsApp on your phone");
   console.log("   2. Go to Settings > Linked Devices");
-  console.log("   3. Tap ''Link a Device''");
-  console.log("   4. Scan the QR code that will open in your browser\n");
-  
+  console.log("   3. Tap 'Link a Device'");
+  console.log("   4. Scan the QR code shown below\n");
+
   qrcode.generate(qr, { small: false });
-  
+
   const qrPath = path.join(__dirname, "../assets/whatsapp-qr.png");
   const assetsDir = path.join(__dirname, "../assets");
   if (!fs.existsSync(assetsDir)) {
     fs.mkdirSync(assetsDir, { recursive: true });
   }
-  
+
   try {
     await QRCode.toFile(qrPath, qr, {
       width: 400,
@@ -53,33 +59,27 @@ client.on("qr", async (qr) => {
         light: "#FFFFFF"
       }
     });
-    
     console.log(` QR Code saved to: ${qrPath}`);
-    console.log(` Opening QR code in browser...`);
-    
-    const { exec } = require("child_process");
-    exec(`start "" "${qrPath}"`);
   } catch (err) {
     console.error(" Failed to generate QR code image:", err.message);
   }
 });
 
 client.on("ready", () => {
-  console.log(" WhatsApp client is ready!");
+  console.log(" ✅ WhatsApp client is ready!");
 });
 
 client.on("disconnected", (reason) => {
-  console.warn("⚠️ WhatsApp client disconnected:", reason);
-  // attempt reinitialize
+  console.warn(" ⚠️ WhatsApp client disconnected:", reason);
   try {
     client.initialize();
   } catch (e) {
-    console.error("❌ Failed to reinitialize WhatsApp client:", e.message);
+    console.error(" ❌ Failed to reinitialize WhatsApp client:", e.message);
   }
 });
 
 client.on("auth_failure", (msg) => {
-  console.error("❌ WhatsApp auth failure:", msg);
+  console.error(" ❌ WhatsApp auth failure:", msg);
 });
 
 client.initialize();
