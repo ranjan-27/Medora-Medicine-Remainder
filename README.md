@@ -1,17 +1,79 @@
-## Running React on Replit
+# Medora 💊
 
-[React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
+Medora is a **mobile-responsive MERN stack web application** that helps users manage their daily medications digitally. It provides secure authentication, email verification, and a simple interface for tracking medicines across devices.
 
-[Vite](https://vitejs.dev/) is a blazing fast frontend build tool that includes features like Hot Module Reloading (HMR), optimized builds, and TypeScript support out of the box.
+---
 
-Using the two in conjunction is one of the fastest ways to build a web app.
+## ✨ Features
 
-### Getting Started
-- Hit run
-- Edit [App.jsx](#src/App.jsx) and watch it live update!
+- Mobile-responsive UI (works on mobile & desktop)
+- User authentication (Signup / Login)
+- JWT-based authorization
+- Password hashing with bcrypt
+- Email OTP verification
+- Add medicines **manually**
+- Add medicines using **spoken (voice) input**
+- Update and delete medicines
+- Email notifications
 
-By default, Replit runs the `dev` script, but you can configure it by changing the `run` field in the [configuration file](#.replit). Here are the vite docs for [serving production websites](https://vitejs.dev/guide/build.html)
+---
 
-### Typescript
+## 🛠 Tech Stack
 
-Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Template](https://replit.com/@replit/React-TypeScript)
+**Frontend**
+- React.js  
+- Fetch API  
+- CSS  
+
+**Backend**
+- Node.js  
+- Express.js  
+- MongoDB (Mongoose)  
+- JWT  
+- Nodemailer
+
+---
+
+## 📁 Project Structure
+
+medora/
+├── backend/
+│ ├── controllers/
+│ ├── models/
+│ ├── routes/
+│ ├── utils/
+│ ├── jobs/
+│ └── server.js
+├── src/
+│ ├── components/
+│ ├── styles/
+│ └── App.js
+└── README.md
+
+
+---
+
+## ▶️ Getting Started
+
+### Backend
+cd backend
+npm install
+npm start
+
+### Frontend
+npm install
+npm start
+
+---
+
+## 🚀 Future Enhancements
+
+- Caregiver support via email/mobile
+- Improved notification system
+
+---
+
+## 👤 Author
+
+**Ranjan Kumar Gupta**  
+GitHub: https://github.com/ranjan-27
